@@ -1,13 +1,26 @@
-import React, {  useState } from 'react'
+type WordProps = {
+  guessedLetters: string[];
+  wordToGuess: string;
+};
 
-const HangedMan = () => {
-    const [correctGuesses, setCorrectGuesses] = useState([])
-
+const HangedMan = ({ guessedLetters, wordToGuess }: WordProps) => {
   return (
-    <div>
-
+    <div className="guessword">
+      {wordToGuess.split("").map((letter,num) => (
+        <span key={num}>
+          <span
+            style={{
+              visibility: guessedLetters.includes(letter)
+                ? "visible"
+                : "hidden",
+            }}
+          >
+            {letter}
+          </span>
+        </span>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default HangedMan
+export default HangedMan;
